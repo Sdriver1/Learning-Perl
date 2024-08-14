@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-my $filename = 'example.txt';
+my $filename = 'testing/example.txt';
 open(my $fh, '<:encoding(UTF-8)', $filename)
   or die "Could not open file '$filename' $!";
 
