@@ -1,0 +1,1225 @@
+<html>
+<head>
+<title>lib.pl reference</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+p {  font-family: Arial; font-size: 10pt}
+a {  text-decoration: none}
+super {  line-height: 3pt}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+<font size="+7" face="Arial, Helvetica, geneva"><b><font size="+6">lib.pl</font> 
+</b></font><font face="Arial, Helvetica, geneva"><b>&nbsp;&nbsp;a simple perl 
+library</b></font> 
+<p><b>lib.pl</b> is a library of useful subroutines and functions that anyone 
+	can use. If you read and follow the directions, they should all work, however, 
+	they are not hacker-proof, or certified &quot;monkey proof.&quot; Of course 
+	with most software, there are no guarantees, warranties, explicit or inferred 
+	with this package. These subroutines are not meant for professionals. If you 
+	program for a living than would consider this library &quot;baby talk.&quot; 
+	However, for the beginner, this is a good group of interesting routines that 
+	will help in many ways.</p>
+<table align="center" cellpadding="1" cellspacing="0">
+	<tr> 
+		<td> 
+			<p><a href="#ReadParse">ReadParse</a></p>
+		</td>
+		<td> 
+			<p>read in and parse form data</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#check_email">check_email</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		</td>
+		<td> 
+			<p>check the syntax of an email address</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#send_mail">send_mail</a> </p>
+		</td>
+		<td> 
+			<p>send a simple mail message</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#send_mail_bcc">send_mail_bcc</a></p>
+		</td>
+		<td> 
+			<p>same as above with Blind Carbon Copy support</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#redirect">redirect</a></p>
+		</td>
+		<td> 
+			<p>redirect from a list of URLs</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#random">random</a></p>
+		</td>
+		<td> 
+			<p>pick a random number or element from an array</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#append">append</a></p>
+		</td>
+		<td> 
+			<p>append text to a file</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#rewrite">rewrite</a></p>
+		</td>
+		<td> 
+			<p>rewrite a text file</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#read">read</a></p>
+		</td>
+		<td> 
+			<p>read a text file (or part of one) into an array</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#slurp">slurp</a></p>
+		</td>
+		<td> 
+			<p>reads or "slurps" the text of an entire file into a single scalar variable</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#dayofweek">dayofweek</a></p>
+		</td>
+		<td> 
+			<p>determines the day of the week from a date **very useful</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#islaterthan">islaterthan</a></p>
+		</td>
+		<td> 
+			<p>determines if today's date is later than the specified date</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#time">time</a></p>
+		</td>
+		<td> 
+			<p>finds the local date and time</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#isbetween">is_between</a></p>
+		</td>
+		<td> 
+			<p>determines if there is a conflict between two time periods</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#timeplus">timeplus</a></p>
+		</td>
+		<td> 
+			<p>Takes a military time and a number of minutes forward or backward, and returns the time</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#timeformat">timeformat</a></p>
+		</td>
+		<td> 
+			<p>changes time format from AM/PM to military time and vice-versa</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#file_contains">file_contains</a></p>
+		</td>
+		<td> 
+			<p>counts how times a text file contains a certain string</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#list2string">list2string</a></p>
+		</td>
+		<td> 
+			<p>takes an array and makes a string of the elements</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#lesser_of">lesser_of</a></p>
+		</td>
+		<td> 
+			<p>returns the least valued number of a list</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#lesser_of">greater_of</a></p>
+		</td>
+		<td> 
+			<p>returns the greatest valued number of a list</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#print_html">print_html</a></p>
+		</td>
+		<td> 
+			<p>generates an html page from the list of code it is given</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#nCr">nCr</a></p>
+		</td>
+		<td> 
+			<p>returns the number of combinations of r selections out of n possible</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#factorial">factorial</a></p>
+		</td>
+		<td> 
+			<p>returns the factorial of an integer greater than or equal to 0</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#stdev">stdev</a></p>
+		</td>
+		<td> 
+			<p>determines the standard deviation of a list of numbers</p>
+		</td>
+	</tr>
+        <tr> 
+		<td> 
+			<p><a href="#linreg">linreg</a></p>
+		</td>
+		<td> 
+			<p>calculates the slope, y-intercept and R value for a set of x and y-values</p>
+		</td>
+	</tr>
+        <tr> 
+		<td> 
+			<p><a href="#derivative">derivative</a></p>
+		</td>
+		<td> 
+			<p>numeriacally determines the derivative (slope) of a function or polynomial at a certain 
+				value</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#integral">integral</a></p>
+		</td>
+		<td> 
+			<p>ditto again but does the integral of the function or polynomial between two values</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#raddeg">raddeg</a></p>
+		</td>
+		<td> 
+			<p>converts between radians and degrees</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#pi">pi</a></p>
+		</td>
+		<td> 
+			<p>returns <font face="symbol">p </font>(3.1415926...)</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#e">e</a></p>
+		</td>
+		<td> 
+			<p>returns e (2.718281828459045) = exp(1)</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#logx">logx</a></p>
+		</td>
+		<td> 
+			<p>returns the logorithum (base of an input - default 10) of input</p>
+		</td>
+	</tr>
+	<tr> 
+		<td height="2"> 
+			<p><a href="#arc">arc</a></p>
+		</td>
+		<td height="2"> 
+			<p>returns inverse sin or cos</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#base">base</a></p>
+		</td>
+		<td> 
+			<p>returns the value of an input in a base of another number (2-9)</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#placevalue">placevalue</a></p>
+		</td>
+		<td> 
+			<p>returns the digit in a given place value of another number</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#convert_units">convert_units</a></p>
+		</td>
+		<td> 
+			<p>converts units (kg to lbm, N to lbf, m<sup>2</sup> to acres, etc)</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#const">const</a></p>
+		</td>
+		<td> 
+			<p>returns most any math or science related constant</p>
+		</td>
+	</tr>
+	<tr> 
+		<td> 
+			<p><a href="#round">round</a></p>
+		</td>
+		<td> 
+			<p>rounds a number to any placevalue</p>
+		</td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+<pre><a name="ReadParse"></a>------------------------------------------------------------------------------ </pre>
+<blockquote> 
+	<p><b><font face="Courier New">&amp;ReadParse</font></b><font face="Courier New">(%in)</font> 
+		-- - takes input from a form or in the URL and creates a hash named %in with 
+		the values of the hash being $in{form_element_name1}, $in{form_element_name2}, 
+		and so on.</p>
+	<p>&nbsp;</p>
+</blockquote>
+<pre><a name="check_email"></a>------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><b><font face="Courier New">&amp;check_email</font></b><font face="Courier New">($address)</font> 
+		-- checks the form of an email address given to it as an argument. If it has 
+		the correct form it returns a 1, if not: it returns 0. Perfect for <b>if</b> 
+		statements. </p>
+	<p>&nbsp;</p>
+</blockquote>
+<pre><a name="send_mail"></a>------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><b><font face="Courier New">&amp;send_mail</font></b><font face="Courier New">($mailprog, 
+		$to, $from, $subject, $body0, $body1, $body2,...$bodyXX)-- </font>sends mail 
+		to whoever, needs input in the following form or variables named as above 
+		defined with the neccessary information.(e.g. <b> <font face="Courier New"> 
+		$to = 'joebob@aol.com'</font></b>) and so on. If you want to put the body 
+		as an argument you must include the to, from, and subject variables, as it 
+		reads them in order. (first the to, then the from, then the subject). Check 
+		out the source code and see for yourself how it works. Can take an unlimited 
+		number of body variables, which can any combination of alphnumeric characters, 
+		variables, and/or arrays. Before the message is written the body variables 
+		are all appended to one variable and are separated in the message by a &quot;\n&quot; 
+		character. </p>
+	<p>I suggest you have <font face="Courier New">$mailprog</font> 
+		defined in the main script (i.e <font face="Courier New">$mailprog 
+		= '/usr/lib/sendmail';</font> which is the most common) or wherever it is 
+		located on your server.</p>
+	<p>For emailing a small number of people a personalized message, I suggest you 
+		use this subroutine in a form like: </p>
+	<ol>
+		<blockquote> 
+			<pre>for ($i = 1; $i &lt;= $#emails; $i++)
+    &amp;send_mail(<font face="Courier New">$mailprog,</font> $emails[$i], $from, $subjects[$i], $headers[$i], $body, $footers[$i], $signaturefile)</pre>
+		</blockquote>
+	</ol>
+	<p>If you have generated a list of people, you can enter their information in 
+		arrays and send them personalized email updates, greetings, confirmations 
+		of reservations, or whatever. For big lists, use the Bcc version.</p>
+	<p>&nbsp;</p>
+</blockquote>
+<pre><a name="send_mail_bcc"></a>-------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<pre><b>&amp;send_mail_bcc</b>($to, $from, $subject, $cc, $bcc, $body0, $body1, $body2,...$bodyXX)</pre>
+	<p>Same as above, 
+		only this one adds support for carbon copy and blind carbon copy lists. You 
+		can use a huge <font face="Courier New">@Bcc</font> array, 
+		combine the elements to one big string variable separated by commas and email 
+		till the cows come home. </p>
+		<p>&nbsp;</p>
+</blockquote>
+<pre><a name="redirect"></a>------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><b><font face="Courier New">&amp;redirect</font></b><font face="Courier New">($redirect_page)</font> 
+		-- takes a name and from a previously created hash, <font face="Courier New">%redirect</font>, 
+		or array, <font face="Courier New">@redirect</font>, containing 
+		the addresses for redirection, and redirects the user. Use can be like this:</p>
+	<blockquote> 
+		<pre>%redirect = ('bad_email', 'http://www.domain.com/bad_email.html',<br>             'thanks'   , 'http://www.domain.com/thankyou.html', <br>             'error'    , 'http://www.domain.com/error.html')
+
+@redirect = ('http://www.domain.com/bad_email.html',<br>             'http://www.domain.com/thankyou.html', <br>             'http://www.domain.com/error.html')
+<br>if (!&amp;check_email($in{email})){ # if the person's email address is bad<br>   &nbsp;&amp;redirect('bad_email');     # redirect them to the bad email page; could use &amp;redirect(0);
+&nbsp;&nbsp;&nbsp;&nbsp;exit 0;                     # terminate the script<br>    } <br>&amp;redirect('thanks');    # or &amp;redirect(1); if your using @redirect.
+&amp;sendmail($in{email}, $my_email, &quot;Your form submission&quot;, $reply);<br>.<br>.<br>.<br></pre>
+	</blockquote>
+</blockquote>
+<pre><a name="random"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b> &amp;random</b>(@thing)</font> 
+		-- Random picker. Picks an element from an array named <font face="Courier New">@thing</font> 
+		or a random number between 1 and a given number. If the parameter is not an 
+		array or scalar number, then the parameter is just returned (i.e. <font face="Courier New">&amp;random('jimmy');</font> 
+		&nbsp;would return &quot;jimmy&quot;).</p>
+	<p> Suggested usages:</p>
+	<blockquote> 
+		<pre>1. print &quot;Location: &amp;random(@redirect)\n\n&quot;;
+2. if (&amp;random(10) &gt; 5){
+3. &lt;img src = &quot;&amp;random(@images)&quot;&gt;
+4. print &quot;You are visitor number: &amp;random(9001) + 999 since &amp;random(@month) &amp;random(31),
+	&amp;random(5) + 1994&quot;
+</pre>
+		<p>-- generates a number between 1000 and 10000 and a date between January 
+			1, 1995 and December 31, 1999; and you could get dates like Febraury 31, 
+			1997. </p>
+		<p>&nbsp;</p>
+	</blockquote>
+</blockquote>
+<pre><a name="append"></a>---------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;append</b>($filename, $line1, 
+		$line2,...$lineXX)</font> -- will append a file (assuming the file is writable, 
+		with the parameters given. The parameters are written right after one another--no 
+		default line breaks, however line breaks may be added inside the parameters, 
+		or can be a parameter itself. If the file does not exist, it will be made.</p>
+	<p>&nbsp;</p>
+</blockquote>
+<pre><font face="Courier New"><b><a name="rewrite"></a></b></font>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;rewrite</b>($filename, $line1, 
+		$line2,...$lineXX)</font> -- same as above only this will completely rewrite 
+		the contents of a file. </p>
+	<p>&nbsp;</p>
+</blockquote>
+
+<pre><a name="read"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b> &amp;read</b>($filename, $number_of_lines)</font> 
+		-- will read a file given by the parameter and a certain number of lines given 
+		by the other parameter, and returned as a list array. If the &quot;<font face="Courier New">$number_of_lines</font>&quot; 
+		parameter is omitted, then the entire file will be read into the array. Line 
+		breaks can be erased with the code:</p>
+	<pre>chomp (@array = &amp;read('textfile.txt', 3400));   # will read 3400 lines of textfile.txt
+
+chomp (@array = &amp;read('textfile.txt'))          # will read the entire file into the array</pre>
+	<p>&nbsp;</p>
+</blockquote>
+
+<pre><a name="slurp"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b> &amp;slurp</b>($filename)</font> 
+		-- will read an entire file and return as a single scalar variable with line breaks</p>
+	<pre>$file = &amp;slurp('textfile.txt');  
+
+</blockquote>
+
+<pre><a name="dayofweek"></a>-------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;dayofweek</b>($month,$day,$year)</font> 
+		-- will determine and return the day of the week of the date given. Month 
+		day and year must be in that order (as separate parameters - note the commas). 
+		It is Y2K, Y3K, Y4K ... compatible.<br>
+		Parameters: <font face="Courier New">$month</font> must be 
+		a number between 1 and 12 or at least a three letter abbr. for a month (Jan, 
+		Feb, Mar...). Case is not important and you may use the full month name if 
+		your code requires it. $day must be a number between 1 and the number of days 
+		in that month, taking into account the leap year. There is no syntax error 
+		checking for the year (except that it must be . It supports negative numbers 
+		-373 is read as 373 BC (there was no year 0 and the routine will not take 
+		it as a parameter. If a bad day (one that does not exist - e.g. 2/30/1995) 
+		is entered, the script will return 0, allowing one to use this as a check 
+		( <font face="Courier New">if &amp;dayofweek($m, $d, $y) { 
+		...</font> )<br>
+		Also supports a fourth parameter which if any value but 0 or null will return 
+		the string as an abbrevation (i.e. Mon, Tue, Wed...), instead of the full 
+		day name.<br>
+		Takes advantage of the fact that the calendar repeats itself every 400 years. 
+		Jan. 1, 2000 is a Saturday as well as 1-1-1600, 1-1-1200, 1-1-2400 and so 
+		on. </p>
+	<p>Great for finding useless information, too. Like every Friday the 13th in 
+		the last millenium</p>
+	<pre>for ($y = 1001; $y &lt;= 2000; $y++){
+  for ($m = 1; $m &lt;= 12; $m++){
+    if (&amp;dayofweek($m,13,$y) =~ /Friday/){
+       print &quot;Friday, $m\/13\/$y\n&quot;;
+    }
+  }
+}</pre>
+</blockquote>
+<pre><a name="time"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;time</b>('time','date','mdy','sec')</font> 
+		&nbsp;--&nbsp;&nbsp;returns the time in the form - <font face="Courier New">&quot;12:24 
+		PM &nbsp;&nbsp;Friday, January 5, 2000&quot;</font> by default (no given parameters). 
+		The parameters shown can be put in any order and each return a different value. 
+		<font face="Courier New">'time'</font> and <font face="Courier New">'date'</font> 
+		return the default values (shown). <font face="Courier New">'mdy'</font> 
+		returns the date but in the compact 1/5/2000 form. If sec, (seconds, secolanda, 
+		or even secccccccccccccccconds) is entered anywhere (just looks for &quot;sec&quot;) 
+		then the seconds will be returned as well, and be put after the minutes like 
+		this: <font face="Courier New">12:24:43 PM</font><br>
+		The code shown above in the example would return:</p>
+	<pre>        <font face="Courier New">12:24:43 PM   Friday, January 5, 2000   1/5/2000</font></pre>
+	<p> As you can see, the elements returned are in the order they are given as 
+		parameters.</p>
+	<p>&nbsp;</p>
+</blockquote>
+<pre><a name="is_between"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;is_between</b>($time1,$time2,$time3,$time4)</font> 
+		&nbsp;--&nbsp;&nbsp;will determine if the two time intervals ($time1 to $time2 and $time3 to $time4) 
+                conflict with each other.  $time4 is optional, and if omitted it will determine if $time3 is between
+                $time1 and $time2. <br> All times must be in military (24 hour) format.</p>
+
+                <p><font face="Courier New">&is_between('0645','0745','2345',0145')</font> would return 
+                <font face="Courier New">'0'</font> as these periods do not conflict</p>
+</blockquote>
+<pre><a name="timeplus"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;timeplus</b>($time,$min)</font> 
+		&nbsp;--&nbsp;&nbsp;will return the time plus the number of minutes given by $min. $time can be in
+                military (24 hour) or regular (12hr:AM/PM) format. $min can be negative and it will go back</p>
+
+                <p><font face="Courier New">&timeplus(2347,134)</font> would return 
+                <font face="Courier New">"0201"</font><br>134 min past 11:47PM => 2:01AM</p>
+</blockquote>
+
+<pre><a name="timeformat"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;timeformat</b>($time)</font> 
+		&nbsp;--&nbsp;&nbsp;will convert military (24hr) to normal (12hr, AM/PM) format and vice-versa</p>
+                <p><font face="Courier New">&timeformat('2347')</font> would return <font face="Courier New">"11:47PM"
+                <br>&timeformat('5:47PM')</font> would return "1747"</p>
+</blockquote>
+
+<pre><a name="file_contains"></a>--------------------------------------------------------------------------------</pre>
+<blockquote>
+	<p><font face="Courier New"><b>&amp;file_contains</b>($filename, 
+		$string, $minimum)</font> -- returns the number of times in which <font face="Courier New">$string</font> 
+		is found in the file: <font face="Courier New">$filename</font>. 
+		or, if <font face="Courier New">$minimum</font> is given, returns 
+		that number (if found atleast that many times) or zero. Good for if statements 
+		for determining if you want to append a file if it doesn't already contain 
+		someone's name or email. Also can be used for determining the number of links, 
+		type of a particular tag or whatever, in a web page.</p>
+	<p>&nbsp;</p>
+</blockquote>
+<pre><a name="list2string"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;list2string</b>($sort, $listdelimiter, 
+		@list)</font> -- returns a scalar string element containing the list values. 
+		The value of <font face="Courier New">$sort</font> will tell 
+		the subroutine how to sort the list (<font face="Courier New">'random'</font> 
+		for random, <font face="Courier New">'backwards'</font> for 
+		a last to first element listing). If it is a value other than 'random' or 
+		'backwards' it will list them from the first to the last element. <font face="Courier New">$listdelimiter</font> 
+		will be what separates each element in the string. Useful ones may be the 
+		tab &quot;\t&quot;, newline &quot;\n&quot;, space ' ', or if working with 
+		HTML, the line break tag: '&lt;br&gt;'. You may also want to put a newline 
+		on it as well for readability of the HTML source. If left undefined, <font face="Courier New">'' 
+		or 0 </font>(zero), all elements will be run together. The list given as a 
+		parameter can be an array (<font face="Courier New">@list</font>), 
+		part of an array (<font face="Courier New">@list[1..87]</font>), 
+		or any combination of lists and strings:</p>
+	<pre><font face="Courier New">&amp;list2string(0,&quot;\n&quot;,$htmlheader,'&lt;body&gt;&lt;p&gt;',@list[0,45],'&lt;/p&gt;&lt;p&gt;',$dynamicmaterial,@list[54,90],$footer)</font></pre>
+	<p>You can nest the strings created with the function, in the function again 
+		and again and it should be able to handle it.<font face="Courier New"> 
+		</font></p>
+</blockquote>
+<p><br>
+</p>
+<pre><a name="lesser_of"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;lesser_of</b>(@list)</font> 
+		-- returns the least valued number of a list given.<br>
+		<font face="Courier New"><b>&amp;greater_of</b>(@list)</font> 
+		-- I think you can guess.</p>
+	<p><font face="Courier New">$least = &amp;lesser_of(2,3,-4,5,1,7,8,9); 
+		# will set $least equal to -4.</font><br>
+		or<br>
+		<font face="Courier New">$most = &amp;greater_of(@somelist); 
+		# will set $most equal to the largest number in the list.</font></p>
+	<p>This subroutine is only good for numbers, and should ignore character strings. 
+		These are useful in that you don't have to type out your own <font face="Courier New">for</font> 
+		loop with an <font face="Courier New">if ($a &lt; $b)</font> 
+		or a <font face="Courier New">sort</font> command.<br>
+		I will use them on a Perl-based tax calculating program in the future.</p>
+	<p>&nbsp;</p>
+</blockquote>
+<pre><a name="print_html"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;print_html</b>($html1, $html2, 
+		$html3)</font> -- outputs given list to HTTP for viewing through a web browser. 
+		The following code: </p>
+	<pre><font face="Courier New">require 'lib.pl';</font><br>&amp;read('lib.html');
+&amp;print_html(@read); 
+
+ or
+
+ &amp;print_html(&amp;read('lib.html'));</pre>
+	<p>will show this html page if executed from a script in the same directory 
+		as this file.<br>
+		Other possible uses make be similar to the following:</p>
+	<pre>if ($i == something){
+  &amp;print_html(&amp;html_header($i), &amp;table($i), &amp;html_footer);  # your own custom html functions
+}                                                           # which return strings and/or lists
+</pre>
+	<br>
+</blockquote>
+<pre><a name="factorial"></a>-------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;factorial</b>($n)</font> 
+		-- returns the factorial of the <font face="Courier New">$n. 
+		$n</font> must be an integer 0 or greater.</p>
+	<p><font face="Courier New">&amp;factorial(5) </font>returns<font face="Courier New"> 
+		120; &nbsp;(5*4*3*2*1)</font><font face="Courier New"><br>
+		&amp;factorial(0) </font>returns<font face="Courier New"> 1;<br>
+                &amp;factorial </font>returns <font face="Courier New">&amp;factorial($_)</font>
+	</p>
+	</blockquote>
+<pre><a name="nCr"></a>-------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;nCr</b>($n, $r)</font> -- 
+		returns the number of combinations of r elements choosen from a total of n 
+		possible elements. e.g. the number of combinations of a certain commitee that 
+		has 10 seats chosen from the Senate (100 seats) which would be. Order does 
+		not matter. The above example would be calculated by: <font face="Courier New">&amp;nCr(100,10)</font><br>
+		Sometimes refered to as <i><b>n Choose r </b></i>or <i><b>from n total, Choose 
+		r</b></i></p>
+	<table>
+		<tr>
+			<td>
+				<pre>mathematically: nCr = </pre>
+			</td>
+			<td>
+				<pre><u>   n!   </u>
+[n-r]!r!</pre>
+			</td>
+		</tr>
+	</table>
+	
+</blockquote>
+
+<pre><a name="stdev"></a>-------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;stdev</b>(@list)</font> -- returns the standard 
+		deviation of the list of values</p>
+        <p>The standard deviation, <font face="Symbol" size = "+2">s</font>, of a list of values, X is: <br>
+         <table><tr>
+           <td><font face="Symbol" size="+3">[S</font></td><td><font face="Courier New">[(X<sub>m</sub> - X<sub>i</sub>)<sup>2</sup>]/(N-1)</td><td><font face="Symbol" size="+3">]</td><td></font><font size="-1"><sup>1/2</sup></font></td>
+         </tr></table>
+</blockquote>
+
+<pre><a name="linreg"></a>-------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;linereg</b>($x0,$y0,$x1,$y1,$x2,$y2...$xn,$yn)</font> -- returns a list
+           of the slope, y-intercept and regression coefficient: <font face="Courier New">($m, $b, $R)</font></p>
+</blockquote>
+
+<pre><a name="derivative"></a>-------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;derivative</b>($x-value, 
+		$function)</font> -- returns the numerical derivative of any function or polynomial. 
+		For Polynomials, <font face="Courier New"><b>&amp;derivative</b>($x-value, 
+		$zero-order-coeff, $1st_order_coeff, ..., $nth_order_coeff)</font> is all you need, 
+		just the coefficients. If you want the coefficients of the polynomial's derivative 
+		just have the first paramenter equal to 'coeff'. <font face="Courier New"><b>&amp;derivative</b>('coeff', 
+		@coefficients)</font> or use the function below.</p>
+	<p><font face="Courier New">&amp;derivative(3,0,0,1)</font> would 
+		return 6, as the polynomial given is just: <font face="Courier New">y 
+		= x<sup>2</sup></font> and the derivative is of course: <font face="Courier New">dy/dx 
+		= 2x</font> and therefore at x = 3, dy/dx = 6.<br>
+		<br>
+		***** VERY IMPORTANT!!! The variable <b>MUST</b> be <font face="Courier New"><b>x</b></font> 
+		or <b><font face="Courier New">$x</font></b>.</p>
+	<p>while you can put any expression into this subroutine, I seriously suggest 
+		taking all polynomials out and handling them with a separate <font face="Courier New"><b>&amp;derivative</b> 
+		</font>function call (much faster and better accuracy).</p>
+	<p>&nbsp; </p>
+</blockquote>
+<pre>-------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;derivative_coeff</b>(@coefficients)</font> 
+		-- returns the coefficients of the derivative of the function that is given. 
+		<br>
+		<font face="Courier New">example: function is: f(x) = 4x<sup>4</sup> 
+		+ 5x<sup>2</sup> - 18x + 6<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you write it as: <b>&amp;derivative</b>('coeff', 
+		6,-18,5,0,4) or <b>&amp;derivative_coeff</b>(6,-18,5,0,4)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it returns: the list 
+		(-18,10,0,16)</font></p>
+	<p>&nbsp; </p>
+	</blockquote>
+
+<pre><a name="integral"></a>-------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"> <b>&amp;integral</b>($x<font size="-2">i</font>, 
+		$x<font size="-2">f</font>, $function)</font> -- returns the numerical integral 
+		value of any function (must be in terms that Perl can understand - e.g.<font face="Courier New"> 
+		$function = '4*x**4 - 5*x**2 + 4 + (log (x+34.23))**3';</font> would work. 
+	</p>
+	<p>Uses Romberg's method: the trapezoidal (linear) numerical integration algorithm, 
+		plus an approximation of the error based on the fact that the error is nearly 
+		proportional to the square of the step increment, h<sup>2</sup>, so halving h and reapplying 
+		the the rule reduces the error by a factor of 1/4. Then an extremely accurate 
+		estimate of the true value can be determined from comparing the two values. This function
+		actually integrates 3 times and produces two very accurate values, then compares these values
+		to produce the final answer.  
+		I suggest that you let this function handle non-polynomial parts of the function 
+		and let the 100% accurate polynomial integrator handle the polynomials.</p>
+	<p><font face="Courier New"><b>&amp;integral</b>($x<font size="-2">i</font>, 
+		$x<font size="-2">f</font>, @coefficients)</font> -- returns the integral 
+		of any polynomial, exactly.</p>
+	<p>The variable again <b>must</b> be <font face="Courier New"><b>x</b></font> 
+		or <b><font face="Courier New">$x.</font></b></p>
+	<table>
+		<tr> 
+			<td valign="top">
+				<p>Note:&nbsp; </p>
+			</td>
+			<td> 
+				<p>For several <b>polynomials</b> I was able to check using the above 
+					function, this function was accurate to about 12 significant digits, 
+					if not completely accurate. I was also able to accurately check most 
+					other functions (sin, cos, log, and combinations of them with others) 
+					with the integration function on my TI-82, although I have no way of 
+					knowing how accurate the calculator is. For most functions where the 
+					values do not fluctuate too much, this should be an excellent numerical 
+					approximation.</p>
+			</td>
+		</tr>
+	</table>
+</blockquote>
+<pre>-------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;integral_coeff</b>(@coefficients)</font> 
+		-- returns the coefficients of the integral of the function that is given. 
+		<br>
+		<font face="Courier New">example: function is: f(x) = 4x<sup>4</sup>
+		+ 5x<sup>2</sup> - 18x + 6<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;you write it as: <b>&amp;integral</b>('coeff', 
+		6,-18,5,0,4) or <b>&amp;integral_coeff</b>(6,-18,5,0,4)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it returns: the list 
+		(0,6,-9,5/3,0,1)</font></p>
+	<p>&quot;0&quot; (zero) is always returned as the zero-order coefficient. </p>
+</blockquote>
+
+<pre>-------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;integral_hp</b>($x<font size="-2">i</font>, 
+		$x<font size="-2">f</font>, $function, $precision)</font> 
+		-- this is the actual function that handles the above <b><font face="Courier New">&integral</font></b>
+                   subroutine (when it's not handling a polynomial), but is run with the last value equal to zero.  The precision or number of steps 
+                   added up can be changed here.  Default "h" value is <font face="Courier New">2<sup>-8</sup></font>.  This can be decreased 
+                   by factors of two by increasing the <font face="Courier New">$precision</font> variable <br>
+                   <font face="Courier New">($precision = 1 -> h = 2<sup>-9</sup>)</font></p>
+</blockquote>
+
+<pre><a name="raddeg"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;raddeg</b>(135, 'rad', 'reduce')</font> 
+		-- returns the equivalent radian value of the degree value given or vice-versa. 
+		If the value of the second parameter is <b><font face="Courier New">'rad'</font></b>, 
+		it returns the value of the first parameter in radians (assuming it is degrees). 
+		If the second parameter is <b><font face="Courier New">'deg'</font></b>, 
+		then the value in degrees of the first parameter (assuming it is in radians) 
+		is returned. If the third parameter has the value 'reduce' it will chop off 
+		integer multiples of 360&deg;/2<font face="symbol">p</font> radians untill 
+		the returned value is under 360&deg;/2<font face="symbol">p</font> rad. This 
+		is most useful in translating degree values into something you can use the 
+		sin and cos functions (both built into Perl) with and translate back to degrees 
+		for readability by the user - they may have a better idea what 160&deg; rather 
+		than 2.7925 radians is (they are the same angle).</p>
+</blockquote>
+<p>&nbsp;</p>
+<pre><a name="logx"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;logx</b>($number, $x)</font> 
+		-- returns the logorithim of $number (base of $x -- default of 10 if nothing 
+		is input).</p>
+	<p><font face="Courier New"><b>&amp;logx</b>(1000, 10) </font>or<font face="Courier New"> 
+		<b>&amp;logx</b>(1000) </font>will return a value of <b>3</b>.</p>
+	<p>&nbsp;</p>
+</blockquote>
+<pre><a name="pi"></a>--------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;pi</b></font> -- returns 
+		the value of <font face="symbol">p. </font>It is also used by the <font face="Courier New">&amp;raddeg</font> 
+		function. <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Can also 
+		use <font face="Courier New"><a href="#const">&amp;const('pi')</a></font> 
+	</p>
+</blockquote>
+<p>&nbsp;</p>
+<pre><a name="e"></a>----------------------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;e</b></font> -- returns the 
+		value <b><font face="Courier New">2.718281828459045</font></b> 
+		<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Can 
+		also use <font face="Courier New"><a href="#const">&amp;const('e')</a></font> 
+	</p>
+</blockquote>
+<pre>
+<a name="base"></a>---------------------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;base</b>($baseTo, $value, 
+		$baseFrom)</font> -- returns the value of $value (base $baseFrom) to its equvalent 
+		value in base $baseTo. &nbsp;If not given, the default $baseFrom is 10.</p>
+	<p><b><font face="Courier New">&amp;base</font></b><font face="Courier New">(2,31)</font> 
+		returns <b><font face="Courier New">11111</font></b><br>
+		<b><font face="Courier New">&amp;base</font></b><font face="Courier New">(2,31,4)</font> 
+		returns <b><font face="Courier New">1101</font></b><br>
+		<br>
+	</p>
+</blockquote>
+<pre><a name="arc"></a>------------------------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;arc</b>('sin',.5)<br>
+		<b>&amp;arc</b>('cos',.5) </font>-- returns the inverse cos or sin of the 
+		value given in the second parameter.<br>
+		These would return <font face="Courier New"> 0.523598775598299 
+		(<font face="symbol">p</font>/6 or 30&deg;)</font> and <font face="Courier New">1.0471975511966 
+		(<font face="symbol">p</font>/3 or 60&deg;)</font> respectively.<br>
+		<br>
+		<font face="Courier New">&amp;raddeg(&amp;arc(cos,.5), 'deg')</font> 
+		will return <font face="Courier New"><b>60.<br>
+		</b>&amp;raddeg(&amp;arc(sin,.5), 'deg')</font> will return <font face="Courier New"><b>30.</b></font> 
+	</p>
+</blockquote>
+<blockquote>
+	<p>&nbsp; </p>
+</blockquote>
+<pre><a name="placevalue"></a>------------------------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;placevalue</b>(345728273,5)<br>
+		<b>&amp;placevalue</b>($value,$i) </font>-- returns the integer in the 10 
+		to the <super>$i</super> place of $value<br>
+		The top would return <font face="Courier New"> 7, </font>as 
+		it is in the 100,000's place. Handles floating point numbers too.<br>
+	</p>
+	<p><font face="Courier New"><b>&amp;placevalue</b>(728273.785,-3)</font> 
+		would return 5. The precision tops out at around the 12th place, starting 
+		from the beginning of the number. <font face="Courier New"><b>&amp;placevalue</b>(87654321.1234,-4)</font> 
+		will <b>not</b> return 4, as the 10-thousanth's place is out of the 32-bit 
+		realm. The places above it would be fine.</p>
+	<p>Here's a way to figure how much precision Perl can handle on a floating pt. 
+		number. Move the decimal point until the integer part reaches 2^31, about 
+		2 trillion (2e12). Yes there are 32 bits but the first is used to determine 
+		if the number is positive or negative. Just before it goes above that value, 
+		whatever digit is in the one's place is as far as it will go. After that, 
+		the actual stored digits are not guaranteed accurate.</p>
+	<p><b>***NEW FEATURE*** </b><br>
+		entering the number as a <b>string</b> variable will allow almost infinite 
+		precision. This allows use with the BigFloat and BigInt modules. Your string 
+		can be an integer: <font face="Courier New">&quot;98765432109876543210&quot;</font>, 
+		or a floating pt. number:<font face="Courier New"> &quot;9876543210.1234567890123456789&quot;</font>, 
+		or an scietific notation number (standard notation for BigFloat and Int): 
+		<font face="Courier New">&quot;9876543210.123456789E-17&quot;</font><br>
+		As always, the second parameter will be the place value as 10 to the <font face="Courier New">$_[1]</font> 
+		power. </p>
+	<p>example:<br>
+		<font face="Courier New">&amp;placevalue(&quot;9876543210.1234567890123456789&quot;,-17); 
+		</font>will return<font face="Courier New"> &quot;7&quot;</font> 
+	</p>
+</blockquote>
+<p>&nbsp;</p>
+<pre><a name="convert_units"></a>------------------------------------------------------------------------------------------</pre>
+<blockquote>
+	<p><font face="Courier New"><b>&amp;convert_units</b>($n,'sqm','acres') 
+		-- </font>returns the number of acres in <font face="Courier New">$n</font> 
+		square meters.</p>
+	<font face="Courier New">supports the following:<br>
+	</font>
+<table border="1" cellpadding="1" cellspacing="0">
+		<tr> 
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"><b>length</b> </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"><b>area</b> </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"><b>volume</b> </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"><b>mass</b> </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"><b>Force</b> </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"><b>Pressure</b> </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"><b>Energy</b>/Torque </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"><b>Power</b> </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"><b>velocity</b> </font> 
+				</center>
+			</td>
+		</tr>
+		<tr> 
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> meters <br>
+					(m) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> square&nbsp;meters<br>
+					(sqm or m^2) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> cubic&nbsp;meters<br>
+					(cu&nbsp;m&nbsp;or&nbsp;m^3) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> kilograms<br>
+					(kg) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> Newtons<br>
+					(N) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> Pascals<br>
+					(Pa, kPa, MPa, GPa) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> Joules or Newton-meters<br>
+					(J or Nm) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> Watts<br>
+					(W, kW, MW) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> meters/sec<br>
+					(m/s) </font> 
+				</center>
+			</td>
+		</tr>
+		<tr> 
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> inches <br>
+					(in) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> square&nbsp;inches <br>
+					(sqin or in^2) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> cubic&nbsp;inches <br>
+					(cu&nbsp;in&nbsp;or&nbsp;in^3) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> pounds<br>
+					(lbm or lb) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> pounds <br>
+					(lbf or lb) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> Pounds/sqin<br>
+					(psi, ksi, Msi) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> calories<br>
+					(cal) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> Horsepower<br>
+					(hp) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> miles/hr<br>
+					(mph) </font> 
+				</center>
+			</td>
+		</tr>
+		<tr> 
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> feet<br>
+					(ft) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> square&nbsp;feet<br>
+					(sqft or ft^2) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> cubic&nbsp;feet<br>
+					(cu&nbsp;ft,&nbsp;ft^3, MCF) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> slugs<br>
+					(sl) </font> 
+				</center>
+			</td>
+			<td> &nbsp;</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> Pounds/sqft<br>
+					(psf) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> kilowatthours<br>
+					(kWh) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> BTU/hour<br>
+					(BTU/h,MBTU/h or MMBTU/h) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> feet/sec<br>
+					(fps or ft/s) </font> 
+				</center>
+			</td>
+		</tr>
+		<tr> 
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> miles<br>
+					(mi) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> square&nbsp;miles<br>
+					(sq&nbsp;mi&nbsp;or&nbsp;mi^2) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> gallons<br>
+					(gal) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1">&nbsp;atomic&nbsp;mass<br>
+					(amu) </font> 
+				</center>
+			</td>
+			<td>&nbsp;</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> Atmospheres <br>
+					(atm) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> BTU's, thousand and million<br>
+					(BTU, MBTU, MMBTU) </font> 
+				</center>
+			</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr> 
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> light&nbsp;years<br>
+					(ly) </font> 
+				</center>
+			</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> acres<br>
+					(acres) </font> 
+				</center>
+			</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1">Foot-pound<br>
+					(ftlb or lbft) </font> 
+				</center>
+			</td>
+			<td>&nbsp; </td>
+			<td>&nbsp; </td>
+		</tr>
+		<tr> 
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td> 
+				<center>
+					<font face="Courier New" size="-1"> electronVolts<br>
+					(eV) </font> 
+				</center>
+			</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+	<p>you can use any of the following indentifiers (with or without spaces) that 
+           are in parentheses. Capitalization does not matter.  
+           <font face="Courier New">'BTU' and 'btu'</font> will be recognized as the same
+           string)</p>
+	<p><br>
+	</p>
+</blockquote>
+<pre><a name="const"></a>------------------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;const</b>(e,pi,h) </font>returns 
+		the list of constants e (2.71828...), <font face="Symbol">p</font> (3.1415926...) 
+		and Planck's constant (6.6260755e-34 J*s), but it doesn't return the units 
+		(those are assumed to be SI units). A list of the constants stored that can 
+		be retrieved </p>
+	<pre>euler  =>  .577215664901532  # Euler's constant (approaches 1 + 1/2 + 1/3 + 1/4 ... + 1/s - ln s)
+pi     => 3.141592653589793  # Circumference/diameter of any circle
+e      => 2.718281828459045  # e, has as many uses as it has decimal places
+golden => (sqrt(5)-1)/2      # The Golden Ratio => x = 1/(1+x) which is approx. 0.61803398875
+c      => 299792458          # speed of light in m/s
+h      => 6.6260755e-34      # Plank's constant in J*s
+k      => 1.380658e-23       # Boltzman's constant in J/K
+N      => 6.0221367e23       # Avogadro's number (number of atoms/molecules in a mol)
+R      => 8.314510           # Gas constant in J/mol*K
+g      => 9.80665            # gravitational constant for earth m/s^2
+G      => 6.6726e-11         # Newton's universal gravitational constant Nm^2/kg^2
+me     => 9.1093897e-31      # rest mass of an electron in kg
+Re     => 6371000            # radius of the Earth in meters</pre>
+</blockquote>
+<p><br>
+</p>
+<pre><a name="round"></a>------------------------------------------------------------------------------------------</pre>
+<blockquote> 
+	<p><font face="Courier New"><b>&amp;round</b>($num,$i) </font>returns 
+		$num rounded to the nearest 10<sup><font size="-2">$i</font></sup> place. 
+		You can force the rounding up or down with a third supported parameter: <font face="Courier New"><b> 
+		&nbsp; &amp;round</b>($num,$i,'up')</font> will do the same but always round 
+		up. <br>
+		Can you guess what&nbsp; <font face="Courier New"><b>&amp;round</b>($num,$i,'down')</font> 
+		does?</p>
+	<p>&nbsp;</p>
+	<p>&nbsp; </p>
+</blockquote>
+<p>&nbsp; </p>
+</body>
+</html>
